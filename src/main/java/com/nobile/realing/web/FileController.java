@@ -1,5 +1,7 @@
 package com.nobile.realing.web;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,13 +30,18 @@ public class FileController {
         return new ResponseEntity<File>(FileService.getFile(id), HttpStatus.OK);
     }
 
+    @GetMapping("/user/{userId}")    
+    public ResponseEntity<List<File>> getFileByUserId(@PathVariable Long userId){
+        return new ResponseEntity<>(FileService.getFilesByUserId(userId), HttpStatus.OK);
+    }
+
     @PostMapping("/save/{userId}")
     public ResponseEntity<File> saveFile(@Valid @RequestBody File File, @PathVariable Long userId){
         return new ResponseEntity<>(FileService.saveFile(File,userId), HttpStatus.OK);
     }
 
-    @PutMapping("/{id}}")
-    public ResponseEntity<File> updateFile( @PathVariable Long id, @Valid @RequestBody File file){
+    @PutMapping("/{id}") 
+    public ResponseEntity<File> updateFile(@Valid @RequestBody File file, @PathVariable Long id){
         return new ResponseEntity<>(FileService.updateFile(id, file.getName()), HttpStatus.OK);
     }
 

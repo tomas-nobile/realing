@@ -21,7 +21,7 @@ import lombok.AllArgsConstructor;
 public class UserController {
     UserService userService;
     
-    @GetMapping("/{id}")    
+    @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id){
         return new ResponseEntity<User>(userService.getUser(id), HttpStatus.OK);
     }
