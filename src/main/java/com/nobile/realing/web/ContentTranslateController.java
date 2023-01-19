@@ -35,7 +35,7 @@ public class ContentTranslateController {
     }
 
     @GetMapping("/file/{fileId}")    
-    public ResponseEntity<List<ContentTranslate>> getFileByUserId(@PathVariable Long fileId){
+    public ResponseEntity<List<ContentTranslate>> getContentTranslateByFileId(@PathVariable Long fileId){
         return new ResponseEntity<>(ContentTranslateService.getContentTranslatesByFileId(fileId), HttpStatus.OK);
     }
 
