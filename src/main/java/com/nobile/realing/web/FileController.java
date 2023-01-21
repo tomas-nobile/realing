@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nobile.realing.entity.File;
 import com.nobile.realing.service.FileService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

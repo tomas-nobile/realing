@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nobile.realing.entity.User;
 import com.nobile.realing.service.UserService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

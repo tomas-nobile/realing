@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.nobile.realing.entity.User;
 import com.nobile.realing.repository.UserRepository;
+import com.nobile.realing.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -30,7 +31,7 @@ public class UserServiceImpl implements UserService {
         if(user.isPresent()){
             return user.get();
         }else{
-            throw new RuntimeException();
+            throw new EntityNotFoundException(id, User.class);
         }
     }
     

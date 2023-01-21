@@ -9,6 +9,7 @@ import com.nobile.realing.entity.ContentTranslate;
 import com.nobile.realing.entity.File;
 import com.nobile.realing.repository.ContentTranslateRepository;
 import com.nobile.realing.repository.FileRepository;
+import com.nobile.realing.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -39,19 +40,16 @@ public class ContentTranslateServiceImpl implements ContentTranslateService {
         return ContentTranslateRepo.save(ContentTranslate);
     }
 
-
     @Override
     public void deleteContentTranslate(Long id) {
         ContentTranslateRepo.deleteById(id);
     }
 
-
-
     public static ContentTranslate ContentTranslateExists(Optional<ContentTranslate> ContentTranslate,Long id){
         if(ContentTranslate.isPresent()){
             return ContentTranslate.get();
         }else{
-            throw new RuntimeException();
+            throw new EntityNotFoundException(id, ContentTranslate.class);
         }
     }
     

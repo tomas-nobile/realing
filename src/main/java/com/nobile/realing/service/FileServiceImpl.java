@@ -9,6 +9,7 @@ import com.nobile.realing.entity.File;
 import com.nobile.realing.entity.User;
 import com.nobile.realing.repository.FileRepository;
 import com.nobile.realing.repository.UserRepository;
+import com.nobile.realing.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -27,7 +28,7 @@ public class FileServiceImpl implements FileService {
 
     public List<File> getFilesByUserId(Long userId) {
         List<File> files= fileRepo.getByUserId(userId);
-        return files ;
+        return files;
     }
 
     @Override
@@ -52,13 +53,11 @@ public class FileServiceImpl implements FileService {
         fileRepo.deleteById(id);
     }
 
-
-
     public static File fileExists(Optional<File> file,Long id){
         if(file.isPresent()){
             return file.get();
         }else{
-            throw new RuntimeException();
+            throw new EntityNotFoundException(id, File.class);
         }
     }
     

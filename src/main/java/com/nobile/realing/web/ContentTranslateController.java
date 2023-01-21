@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nobile.realing.entity.ContentTranslate;
 import com.nobile.realing.service.ContentTranslateService;
 
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
