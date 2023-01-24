@@ -19,16 +19,17 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    UserService userService;
+    UserService userService; // Does it should be : UserServiceImpl userService
     
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id){
         return new ResponseEntity<User>(userService.getUser(id), HttpStatus.OK);
     }
 
-    @PostMapping()
+    @PostMapping("/register")
     public ResponseEntity<User> saveUser(@Valid @RequestBody User user){
-        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.OK);
+        userService.saveUser(user);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     
 }

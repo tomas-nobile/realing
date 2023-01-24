@@ -25,7 +25,7 @@ public class ContentTranslateController {
     ContentTranslateService ContentTranslateService;
     
     @GetMapping("/{id}")    
-    public ResponseEntity<ContentTranslate> getContentTranslate(@PathVariable Long id){
+    public ResponseEntity<ContentTranslate> getContentTranslate(@PathVariable Long id) {
         return new ResponseEntity<ContentTranslate>(ContentTranslateService.getContentTranslate(id), HttpStatus.OK);
     }
 

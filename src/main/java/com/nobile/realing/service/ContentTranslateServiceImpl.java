@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.nobile.realing.entity.ContentTranslate;
 import com.nobile.realing.entity.File;
+import com.nobile.realing.exception.custom.EntityNotFoundException;
 import com.nobile.realing.repository.ContentTranslateRepository;
 import com.nobile.realing.repository.FileRepository;
-import com.nobile.realing.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -21,7 +21,7 @@ public class ContentTranslateServiceImpl implements ContentTranslateService {
     FileRepository FileRepo;
 
     @Override
-    public ContentTranslate getContentTranslate(Long id) {
+    public ContentTranslate getContentTranslate(Long id){
         Optional<ContentTranslate> ContentTranslate= ContentTranslateRepo.findById(id);
         return ContentTranslateExists(ContentTranslate,id);
     }
@@ -33,7 +33,7 @@ public class ContentTranslateServiceImpl implements ContentTranslateService {
     }
 
     @Override
-    public ContentTranslate saveContentTranslate(ContentTranslate ContentTranslate,Long FileId) {
+    public ContentTranslate saveContentTranslate (ContentTranslate ContentTranslate,Long FileId){
         Optional<File> unwrappedFile= FileRepo.findById(FileId);
         File File= FileServiceImpl.fileExists(unwrappedFile, FileId);
         ContentTranslate.setFile(File);
@@ -45,7 +45,7 @@ public class ContentTranslateServiceImpl implements ContentTranslateService {
         ContentTranslateRepo.deleteById(id);
     }
 
-    public static ContentTranslate ContentTranslateExists(Optional<ContentTranslate> ContentTranslate,Long id){
+    public static ContentTranslate ContentTranslateExists(Optional<ContentTranslate> ContentTranslate,Long id) throws EntityNotFoundException{
         if(ContentTranslate.isPresent()){
             return ContentTranslate.get();
         }else{

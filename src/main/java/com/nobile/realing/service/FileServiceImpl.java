@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.nobile.realing.entity.File;
 import com.nobile.realing.entity.User;
+import com.nobile.realing.exception.custom.EntityNotFoundException;
 import com.nobile.realing.repository.FileRepository;
 import com.nobile.realing.repository.UserRepository;
-import com.nobile.realing.exception.EntityNotFoundException;
 
 import lombok.AllArgsConstructor;
 
@@ -40,7 +40,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public File updateFile(Long id,String name) {
+    public File updateFile(Long id,String name)  {
         Optional<File> unwrappedFile= fileRepo.findById(id);
         File file= fileExists(unwrappedFile,id);
         file.setName(name);

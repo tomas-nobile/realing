@@ -14,6 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -28,8 +33,25 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Email(message = "{validation.email}") 
+    @NotBlank(message = "{validation.not_blank}")
+	@NotNull(message = "{validation.not_null}")
+    @Column(name = "email", nullable = false,unique=true )
+    private String email;
+
+
+    @Pattern(regexp = "^[\\p{Alnum}]{1,32}$", message = "{validation.username.pattern.alphanumeric}")
+    @Size(min = 5, message = "{validation.user.size.too_short}") 
+    @Size(max = 20, message = "{validation.user.size.too_long}")
+    @NotBlank(message = "{validation.not_blank}")
+	@NotNull(message = "{validation.not_null}")
+	@Column( nullable = false, unique = true)
+	private String username;
+
+    @NotBlank(message = "{validation.not_blank}")
+	@NotNull(message = "{validation.not_null}")
+	@Column(nullable = false)
+	private String password;
 
     @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)

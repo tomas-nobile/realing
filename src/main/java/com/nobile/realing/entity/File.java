@@ -16,6 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -30,8 +33,16 @@ public class File {
     @Column(name = "id")
     private Long id;
 
+    @Size(max = 50, message = "{validation.user.size.too_long}")
+    @NotBlank(message = "{validation.not_blank}")
+	@NotNull(message = "{validation.not_null}")
     @Column(name = "name", nullable = false)
     private String name;
+
+    @NotBlank(message = "{validation.not_blank}")
+	@NotNull(message = "{validation.not_null}")
+    @Column(name = "ubication", nullable = false)
+    private String ubication;
 
     @JsonIgnore
     @OneToMany(mappedBy = "file", cascade = CascadeType.ALL)

@@ -41,7 +41,7 @@ public class FileController {
     }
 
     @PutMapping("/{id}") 
-    public ResponseEntity<File> updateFile(@Valid @RequestBody File file, @PathVariable Long id){
+    public ResponseEntity<File> updateFile(@Valid @RequestBody File file, @PathVariable Long id) {
         return new ResponseEntity<>(FileService.updateFile(id, file.getName()), HttpStatus.OK);
     }
 
