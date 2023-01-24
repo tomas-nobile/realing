@@ -18,7 +18,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.nobile.realing.entity.User;
 import com.nobile.realing.security.SecurityConstants;
 import com.nobile.realing.security.manager.CustomAuthenticationManager;
-import com.nobile.realing.security.utils.Util;
+import com.nobile.realing.utils.ExceptionUtil;
 
 import lombok.AllArgsConstructor;
 
@@ -26,12 +26,18 @@ import lombok.AllArgsConstructor;
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private CustomAuthenticationManager authenticationManager;
+    private ExceptionUtil<User> exceptionUtil;
+
+    public AuthenticationFilter(CustomAuthenticationManager authenticationManager){
+        this.authenticationManager=authenticationManager;
+        exceptionUtil= new ExceptionUtil<User>(User.class);
+    }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
 
-        User user = Util.verifyPayloadStruct(request);
+        User user = exceptionUtil.verifyPayloadStruct(request);
         Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
         return authenticationManager.authenticate(authentication);
     }

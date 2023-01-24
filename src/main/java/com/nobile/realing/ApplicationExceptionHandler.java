@@ -1,6 +1,5 @@
 package com.nobile.realing;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,22 +12,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.nobile.realing.exception.ErrorDetails;
 import com.nobile.realing.exception.custom.EntityNotFoundException;
+import com.nobile.realing.utils.*;;
 
 @RestControllerAdvice
 public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private ResponseEntity<Object> errorStatusMessage(List<String> errors, HttpStatus status) {
-        ErrorDetails errorDetails = new ErrorDetails(
-                status,errors);
-        return new ResponseEntity<Object>(
-                errorDetails, new HttpHeaders(), errorDetails.getStatus());
-    }
-
     @ExceptionHandler({ EntityNotFoundException.class })
     protected ResponseEntity<Object> handleNotFound(RuntimeException ex) {
-        return errorStatusMessage(Arrays.asList(ex.getMessage()), HttpStatus.NOT_FOUND);
+        return ExceptionUtil.errorStatusMessage(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @Override
@@ -41,7 +33,7 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
                 .map(fieldError -> fieldError.getDefaultMessage())
                 .collect(Collectors.toList());
 
-        return errorStatusMessage(errorList,HttpStatus.BAD_REQUEST);
+        return ExceptionUtil.errorStatusMessage(errorList,HttpStatus.BAD_REQUEST);
     }
 
 }

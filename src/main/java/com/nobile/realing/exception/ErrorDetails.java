@@ -20,7 +20,7 @@ public class ErrorDetails {
         this.errors = errors;
     }
 
-    public ErrorDetails(HttpStatus status, String message, String error) {
+    public ErrorDetails(HttpStatus status, String error) {
         super();
         this.status = status;
         errors = Arrays.asList(error);
