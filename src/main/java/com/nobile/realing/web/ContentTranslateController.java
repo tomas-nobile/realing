@@ -15,20 +15,27 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nobile.realing.entity.ContentTranslate;
 import com.nobile.realing.service.ContentTranslateService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 
+
+@Tag(name = "Content to translate controller", description = "Create or retrive words/phrase to translate")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/ContentTranslate")
 public class ContentTranslateController {
     ContentTranslateService ContentTranslateService;
-    
+
+    @Operation(summary = "Retrieves contacts", description = "Provides a list of all contacts")
     @GetMapping("/{id}")    
     public ResponseEntity<ContentTranslate> getContentTranslate(@PathVariable Long id) {
         return new ResponseEntity<ContentTranslate>(ContentTranslateService.getContentTranslate(id), HttpStatus.OK);
     }
 
+    @Operation(summary = "Retrieves contacts", description = "Provides a list of all contacts")
     @PostMapping("/save/{fileId}")
     public ResponseEntity<ContentTranslate> saveContentTranslate(@Valid @RequestBody ContentTranslate ContentTranslate, @PathVariable Long fileId){
         return new ResponseEntity<>(ContentTranslateService.saveContentTranslate(ContentTranslate,fileId), HttpStatus.OK);

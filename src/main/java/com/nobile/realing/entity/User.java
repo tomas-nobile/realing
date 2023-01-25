@@ -33,23 +33,23 @@ public class User {
     @Column(name = "id")
     private Long id;
 
-    @Email(message = "{validation.email}") 
-    @NotBlank(message = "{validation.not_blank}")
-	@NotNull(message = "{validation.not_null}")
+    @Email(message = "{validation.user.email}") 
+    @NotBlank(message = "{validation.user.email.not_blank}")
+	@NotNull(message = "{validation.user.email.not_null}")
     @Column(name = "email", nullable = false,unique=true )
     private String email;
 
 
     @Pattern(regexp = "^[\\p{Alnum}]{1,32}$", message = "{validation.username.pattern.alphanumeric}")
-    @Size(min = 5, message = "{validation.user.size.too_short}") 
-    @Size(max = 20, message = "{validation.user.size.too_long}")
-    @NotBlank(message = "{validation.not_blank}")
-	@NotNull(message = "{validation.not_null}")
+    @Size(min = 5, message = "{validation.user.username.size.too_short}") 
+    @Size(max = 20, message = "{validation.user.username.size.too_long}")
+    @NotBlank(message = "{validation.user.username.not_blank}")
+	@NotNull(message = "{validation.user.username.not_null}")
 	@Column( nullable = false, unique = true)
 	private String username;
 
-    @NotBlank(message = "{validation.not_blank}")
-	@NotNull(message = "{validation.not_null}")
+    @NotBlank(message = "{validation.user.password.not_blank}")
+	@NotNull(message = "{validation.user.password.not_null}")
 	@Column(nullable = false)
 	private String password;
 

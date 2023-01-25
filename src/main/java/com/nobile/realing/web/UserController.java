@@ -20,16 +20,22 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/user")
 public class UserController {
     UserService userService; // Does it should be : UserServiceImpl userService
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id){
+    public ResponseEntity<User> getUser(@PathVariable Long id) {
         return new ResponseEntity<User>(userService.getUser(id), HttpStatus.OK);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> saveUser(@Valid @RequestBody User user){
+    public ResponseEntity<User> saveUser(@Valid @RequestBody User user) {
         userService.saveUser(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    
+
+    @PostMapping("/login")
+    public void fakeLogin(@Valid @RequestBody String username, String password) {
+        throw new IllegalStateException(
+                "This method shouldn't be called. It's implemented by Spring Security filters.");
+    }
+
 }

@@ -33,14 +33,14 @@ public class File {
     @Column(name = "id")
     private Long id;
 
-    @Size(max = 50, message = "{validation.user.size.too_long}")
-    @NotBlank(message = "{validation.not_blank}")
-	@NotNull(message = "{validation.not_null}")
+    @Size(max = 50, message = "{validation.file.name.size.too_long}")
+    @NotBlank(message = "{validation.file.name.not_blank}")
+	@NotNull(message = "{validation.file.name.not_null}")
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotBlank(message = "{validation.not_blank}")
-	@NotNull(message = "{validation.not_null}")
+    @NotBlank(message = "{validation.file.ubication.not_blank}")
+	@NotNull(message = "{validation.file.ubication.not_null}")
     @Column(name = "ubication", nullable = false)
     private String ubication;
 
@@ -48,6 +48,7 @@ public class File {
     @OneToMany(mappedBy = "file", cascade = CascadeType.ALL)
     private List<ContentTranslate> contentTranslate;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id",referencedColumnName = "id")
     private User user;

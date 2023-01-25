@@ -28,8 +28,8 @@ public class ContentTranslate {
     private Long id;
 
     @Size(max = 50, message = "{validation.user.size.too_long}")
-    @NotBlank(message = "{validation.not_blank}")
-	@NotNull(message = "{validation.not_null}")
+    @NotBlank(message = "{validation.contentTranslate.content.not_blank}")
+	@NotNull(message = "{validation.contentTranslate.content.not_null}")
     @Column(name = "content", nullable = false)
     private String content;
 
