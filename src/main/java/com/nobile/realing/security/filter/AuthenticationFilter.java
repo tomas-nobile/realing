@@ -30,7 +30,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     public AuthenticationFilter(CustomAuthenticationManager authenticationManager){
         this.authenticationManager=authenticationManager;
-        exceptionUtil= new ExceptionUtil<User>(User.class);
+        this.exceptionUtil= new ExceptionUtil<User>(User.class);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
             throws AuthenticationException {
 
         User user = exceptionUtil.verifyPayloadStruct(request);
-        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword());
         return authenticationManager.authenticate(authentication);
     }
 

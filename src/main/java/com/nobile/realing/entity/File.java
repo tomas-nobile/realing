@@ -50,6 +50,6 @@ public class File {
 
     @JsonIgnore
     @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id",referencedColumnName = "id")
-    private User user;
+    @JoinColumn(name = "profile_id",referencedColumnName = "id")
+    private Profile profile;
 }

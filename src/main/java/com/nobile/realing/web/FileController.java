@@ -31,8 +31,8 @@ public class FileController {
     }
 
     @GetMapping("/user/{userId}")    
-    public ResponseEntity<List<File>> getFileByUserId(@PathVariable Long userId){
-        return new ResponseEntity<>(FileService.getFilesByUserId(userId), HttpStatus.OK);
+    public ResponseEntity<List<File>> getFileByProfileId(@PathVariable Long profileId){
+        return new ResponseEntity<>(FileService.getFilesByProfileId(profileId), HttpStatus.OK);
     }
 
     @PostMapping("/save/{userId}")

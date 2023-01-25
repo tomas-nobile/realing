@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.nobile.realing.entity.File;
 
 public interface FileRepository extends CrudRepository<File,Long>{
-    List<File> getByUserId(Long userId);
+    List<File> getByProfileId(Long userId);
 }

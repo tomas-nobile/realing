@@ -9,6 +9,6 @@ public interface FileService {
     File saveFile(File file, Long userId) ;
     File updateFile(Long id, String name) ;
     void deleteFile(Long id);
-    List<File> getFilesByUserId(Long userId);
+    List<File> getFilesByProfileId(Long profileId);
 
 }

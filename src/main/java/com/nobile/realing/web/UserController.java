@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nobile.realing.entity.Profile;
 import com.nobile.realing.entity.User;
 import com.nobile.realing.service.UserService;
 
@@ -19,7 +20,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    UserService userService; // Does it should be : UserServiceImpl userService
+    UserService userService;
 
     @GetMapping("/{id}")
     public ResponseEntity<User> getUser(@PathVariable Long id) {
@@ -33,7 +34,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public void fakeLogin(@Valid @RequestBody String username, String password) {
+    public void fakeLogin(@Valid @RequestBody User user) {
         throw new IllegalStateException(
                 "This method shouldn't be called. It's implemented by Spring Security filters.");
     }
