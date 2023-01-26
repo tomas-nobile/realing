@@ -13,5 +13,6 @@ Realing is a ebook reader focuses on helping the user to learn vocabulary in new
 - microservices architecture
 - devops techs (docker, kubernetes, jenkins, sonarqube, ansible, terraform)
 - cloud provider(aws)
+- more securing
 
 Functional and technical doc -- TO DO 
